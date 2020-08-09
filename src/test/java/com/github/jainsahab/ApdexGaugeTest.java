@@ -16,4 +16,14 @@ public class ApdexGaugeTest {
     }
     assertThat(apdexGauge.getValue(), is(0.75));
   }
+
+  @Test
+  public void shouldCalculateGaugeWithDefaultThreshold() {
+    ApdexGauge apdexGauge = new ApdexGauge();
+    long[] values = {13, 21, 29, 17, 19, 23, 79, 49, 61, 139};
+    for (long value : values) {
+      apdexGauge.add(value);
+    }
+    assertThat(apdexGauge.getValue(), is(1.00));
+  }
 }
