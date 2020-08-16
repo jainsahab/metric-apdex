@@ -1,12 +1,99 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+    id "com.jfrog.bintray" version "1.8.1"
 }
 
 group 'com.github.jainsahab'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "jainsahab"
+            name "Prateek Jain"
+            email "prateek.jain23021995@gmail.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/jainsahab/metric-apdex"
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc.failOnError = false
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+            groupId project.group
+            artifactId rootProject.name
+            version project.version
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'An enhanced version of Gauge metrix type to support apdex calculation.')
+                root.appendNode('name', rootProject.name)
+                root.appendNode('url', 'https://github.com/jainsahab/metric-apdex')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+
+// https://reflectoring.io/guide-publishing-to-bintray-with-gradle/
+bintray {
+    user = System.getProperty('bintray.user')
+    key = System.getProperty('bintray.key')
+    publications = ['mavenPublication']
+
+    pkg {
+        repo = rootProject.name
+        name = rootProject.name
+        userOrg = 'jainsahab'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/jainsahab/metric-apdex'
+        version {
+            name = project.version
+            desc = project.version
+            released  = new Date()
+        }
+    }
+
 }
 
 dependencies {
