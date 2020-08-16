@@ -1,6 +1,8 @@
 Metric-Apdex
 ============
 
+[ ![Download](https://api.bintray.com/packages/jainsahab/metric-apdex/metric-apdex/images/download.svg) ](https://bintray.com/jainsahab/metric-apdex/metric-apdex/_latestVersion)
+
 `metrics-apdex` is an extension to Dropwizards's [metrics](https://github.com/dropwizard/metrics) library which 
 enhances the existing Gauge metric type and provide it with the capability to calculate Apdex score by converting the 
 measurements into insights about user satisfaction.
