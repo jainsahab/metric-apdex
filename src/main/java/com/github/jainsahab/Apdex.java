@@ -24,6 +24,11 @@ public class Apdex {
     }
   }
 
+  /**
+   * Returns the current Apdex score.
+   *
+   * @return the current Apdex score.
+   */
   public double getScore() {
     long total = values.length;
     if (total == 0) {
