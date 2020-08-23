@@ -26,6 +26,10 @@ public class ApdexGauge implements Gauge<Double> {
     this.reservoir.update(value);
   }
 
+  public void setThreshold(double threshold) {
+    this.threshold = threshold;
+  }
+
   @Override
   public Double getValue() {
     Snapshot snapshot = this.reservoir.getSnapshot();
