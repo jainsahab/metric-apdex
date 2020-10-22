@@ -26,6 +26,11 @@ public class ApdexGauge implements Gauge<Double> {
     reservoir = new ExponentiallyDecayingReservoir();
   }
 
+  public ApdexGauge(double threshold, Reservoir reservoir) {
+    this.threshold = threshold;
+    this.reservoir = reservoir;
+  }
+
   /**
    * Adds a new recorded value to the reservoir.
    *
