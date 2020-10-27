@@ -1,6 +1,6 @@
 Metric-Apdex
 ============
-[![Build Status](https://travis-ci.com/jainsahab/metric-apdex.svg?branch=master)](https://travis-ci.com/jainsahab/metric-apdex)
+[![Build Status](https://travis-ci.org/jainsahab/metric-apdex.svg?branch=master)](https://travis-ci.com/jainsahab/metric-apdex)
 [![Download](https://api.bintray.com/packages/jainsahab/metric-apdex/metric-apdex/images/download.svg) ](https://bintray.com/jainsahab/metric-apdex/metric-apdex/_latestVersion)
 
 `metrics-apdex` is an extension to Dropwizards's [metrics](https://github.com/dropwizard/metrics) library which 
